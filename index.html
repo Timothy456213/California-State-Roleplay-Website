@@ -1,1 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>California Roleplay</title>
+<link rel="icon" href="CARPs.webp">
+<style>
+:root{--navy:#0a1f44;--blue:#1e6fe0;--sky:#19b5ff;--sun:#ffcb1f;--ink:#12233f}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);line-height:1.7;font-size:17px;background:linear-gradient(180deg,#e8f4ff 0%,#d4e9ff 50%,#c2ddfa 100%);background-attachment:fixed}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
 
+header{position:sticky;top:0;z-index:5;background:var(--navy);color:#fff;display:flex;justify-content:space-between;align-items:center;padding:10px 5vw}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;text-decoration:none}
+.brand img{height:42px;width:42px;object-fit:contain;background:#fff;border-radius:8px}
+nav a{margin-left:22px;text-decoration:none;color:#c9dcf5;font-size:.95rem}
+nav a:hover{color:var(--sun)}
+
+.hero{text-align:center;padding:50px 5vw 70px}
+.hero img{width:min(380px,80vw);height:auto}
+.hero p{max-width:36ch;margin:6px auto 28px;font-size:1.3rem;color:#3b4f6e}
+.btn{display:inline-block;background:var(--blue);color:#fff;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:700}
+.btn:hover{background:#1558b8}
+.btn.sun{background:var(--sun);color:#1a1400}
+.btn.sun:hover{background:#ffd84d}
+
+section{padding:70px 5vw}
+.wrap{max-width:900px;margin:auto}
+h2{font-size:2rem;margin-bottom:16px;color:var(--navy)}
+.alt{background:rgba(255,255,255,.45)}
+ol{padding-left:1.3em}
+li{margin-bottom:12px}
+
+.staff{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-top:20px}
+.staff div{background:#fff;border-left:5px solid var(--blue);padding:16px 18px;border-radius:6px;font-weight:600}
+.staff small{display:block;font-weight:400;color:#5a6d88}
+
+.join{background:var(--navy);color:#fff;text-align:center}
+.join h2{color:#fff}
+.join p{margin-bottom:24px;color:#c9dcf5}
+
+footer{text-align:center;padding:26px;color:#4a5f7d;font-size:.9rem}
+@media(max-width:600px){nav a{margin-left:12px}.brand span{display:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="brand" href="#top"><img src="CARPs.webp" alt=""><span>California Roleplay</span></a>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#rules">Rules</a>
+    <a href="#staff">Staff</a>
+    <a href="#join">Join</a>
+  </nav>
+</header>
+
+<div class="hero" id="top">
+  <img src="CARPs.webp" alt="California Roleplay logo">
+  <p>A realistic roleplay community set across the Golden State.</p>
+  <a class="btn" href="https://discord.gg/BbxvDPDzy">Join our Discord</a>
+</div>
+
+<section id="about" class="alt">
+  <div class="wrap">
+    <h2>About us</h2>
+    <p>California Roleplay is a community for players who enjoy realistic roleplay. Patrol as law enforcement, respond as fire and EMS, run a business, or live as a civilian. Everyone is welcome, and new players get help from our staff.</p>
+  </div>
+</section>
+
+<section id="rules">
+  <div class="wrap">
+    <h2>Server rules</h2>
+    <ol>
+      <li>Respect every member and staff member.</li>
+      <li>Stay in character during roleplay scenes.</li>
+      <li>No random deathmatching or vehicle deathmatching.</li>
+      <li>No cheating, exploiting, or using unauthorized mods.</li>
+      <li>Follow staff instructions right away. Appeal decisions in a ticket.</li>
+      <li>Keep chat free of hate speech and harassment.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="staff" class="alt">
+  <div class="wrap">
+    <h2>Staff team</h2>
+    <div class="staff">
+      <div>Timothy<small>Director</small></div>
+      <div>King_bossbaby10<small>Director</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="join" class="join">
+  <div class="wrap">
+    <h2>Ready to play?</h2>
+    <p>Join the Discord, read the rules, and open an application.</p>
+    <a class="btn sun" href="https://discord.gg/BbxvDPDzy">Join our Discord</a>
+  </div>
+</section>
+
+<footer>&copy; 2026 California Roleplay. Not affiliated with any real government agency.</footer>
+
+</body>
+</html>
