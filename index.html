@@ -4,90 +4,198 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>California Roleplay</title>
-<link rel="icon" href="CARPs.webp">
+<meta name="description" content="California Roleplay: a realistic roleplay community. Join our Discord.">
+<meta property="og:title" content="California Roleplay">
+<meta property="og:image" content="CARPs.png">
+<link rel="icon" href="CARPs.png">
 <style>
-:root{--navy:#0a1f44;--blue:#1e6fe0;--sky:#19b5ff;--sun:#ffcb1f;--ink:#12233f}
+:root{--navy:#0a1f44;--blue:#1e6fe0;--sky:#19b5ff;--sun:#ffcb1f;--ink:#12233f;--muted:#4a5f7d;--card:#fff;--bg1:rgba(232,244,255,.80);--bg2:rgba(194,221,250,.80);--band:rgba(255,255,255,.5);--ease:cubic-bezier(.22,.61,.36,1)}
+[data-theme=dark]{--ink:#e6eefb;--muted:#9fb3d1;--card:#12274d;--bg1:rgba(7,20,43,.88);--bg2:rgba(11,31,64,.88);--band:rgba(255,255,255,.04)}
 *{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth}
-body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);line-height:1.7;font-size:17px;background:linear-gradient(180deg,#e8f4ff 0%,#d4e9ff 50%,#c2ddfa 100%);background-attachment:fixed}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);line-height:1.7;font-size:17px;background:linear-gradient(180deg,var(--bg1),var(--bg2)),url("CSR%20BG.webp") center/cover fixed;background-color:#c2ddfa;transition:color .5s var(--ease)}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+button{font:inherit;cursor:pointer}
+#bar{position:fixed;top:0;left:0;height:4px;width:0;background:var(--sun);z-index:20;transition:width .1s linear}
 
-header{position:sticky;top:0;z-index:5;background:var(--navy);color:#fff;display:flex;justify-content:space-between;align-items:center;padding:10px 5vw}
+header{position:sticky;top:0;z-index:10;background:var(--navy);color:#fff;display:flex;justify-content:space-between;align-items:center;padding:10px 5vw}
 .brand{display:flex;align-items:center;gap:10px;font-weight:700;text-decoration:none}
 .brand img{height:42px;width:42px;object-fit:contain;background:#fff;border-radius:8px}
-nav a{margin-left:22px;text-decoration:none;color:#c9dcf5;font-size:.95rem}
+nav{display:flex;align-items:center;gap:20px}
+nav a{text-decoration:none;color:#c9dcf5;font-size:.95rem;transition:color .25s var(--ease)}
 nav a:hover{color:var(--sun)}
+.icon{background:none;border:1px solid #3a5a8c;color:#fff;border-radius:8px;padding:6px 10px;transition:background .25s var(--ease)}
+.icon:hover{background:#17376b}
+#menu{display:none}
+@media(max-width:760px){
+ #menu{display:block}
+ nav{position:absolute;top:100%;left:0;right:0;background:var(--navy);flex-direction:column;padding:16px;display:none;gap:14px}
+ nav.open{display:flex}
+ .brand span{display:none}
+}
 
-.hero{text-align:center;padding:50px 5vw 70px}
-.hero img{width:min(380px,80vw);height:auto}
-.hero p{max-width:36ch;margin:6px auto 28px;font-size:1.3rem;color:#3b4f6e}
-.btn{display:inline-block;background:var(--blue);color:#fff;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:700}
-.btn:hover{background:#1558b8}
+.hero{position:relative;overflow:hidden;text-align:center;padding:60px 5vw 90px}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero>*:not(canvas){position:relative;z-index:1}
+.hero img{width:min(400px,80vw);height:auto;animation:float 7s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-12px)}}
+.hero p{max-width:36ch;margin:6px auto 28px;font-size:1.3rem;color:var(--ink)}
+.btn{display:inline-block;background:var(--blue);color:#fff;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:700;border:0;transition:transform .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease)}
+.btn:hover{background:#1558b8;transform:translateY(-3px);box-shadow:0 10px 24px rgba(30,111,224,.35)}
 .btn.sun{background:var(--sun);color:#1a1400}
-.btn.sun:hover{background:#ffd84d}
+.btn.sun:hover{background:#ffd84d;box-shadow:0 10px 24px rgba(255,203,31,.35)}
+.online{margin-top:18px;font-weight:600;color:var(--ink);min-height:1.7em}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#2ecc71;margin-right:8px}
 
 section{padding:70px 5vw}
-.wrap{max-width:900px;margin:auto}
+.wrap{max-width:960px;margin:auto}
 h2{font-size:2rem;margin-bottom:16px;color:var(--navy)}
-.alt{background:rgba(255,255,255,.45)}
-ol{padding-left:1.3em}
-li{margin-bottom:12px}
+[data-theme=dark] h2{color:#fff}
+.alt{background:var(--band)}
 
-.staff{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-top:20px}
-.staff div{background:#fff;border-left:5px solid var(--blue);padding:16px 18px;border-radius:6px;font-weight:600}
-.staff small{display:block;font-weight:400;color:#5a6d88}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+.tabs button{background:var(--card);color:var(--ink);border:2px solid transparent;padding:10px 18px;border-radius:8px;font-weight:600;transition:all .3s var(--ease)}
+.tabs button:hover{transform:translateY(-2px)}
+.tabs button[aria-selected=true]{background:var(--blue);color:#fff}
+.panel{background:var(--card);border-radius:10px;padding:22px;border-left:5px solid var(--blue);animation:fade .5s var(--ease)}
+.panel[hidden]{display:none}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}}
+
+#q{width:100%;padding:12px 16px;border-radius:8px;border:2px solid #9ec1f0;background:var(--card);color:var(--ink);font:inherit;margin:8px 0 16px;transition:border-color .3s var(--ease)}
+#q:focus{border-color:var(--blue);outline:none}
+#rules ol{padding:0}
+#rules li{background:var(--card);border-radius:8px;padding:14px 18px;margin-bottom:10px;list-style:none;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+#rules li:hover{transform:translateX(6px);box-shadow:0 6px 18px rgba(10,31,68,.12)}
+#rules li.hide{display:none}
+#rules b{display:block;color:var(--blue);font-size:1.05rem}
+#rules span{color:var(--muted)}
+
+details{background:var(--card);border-radius:8px;padding:14px 18px;margin-bottom:10px;transition:box-shadow .3s var(--ease)}
+details:hover{box-shadow:0 6px 18px rgba(10,31,68,.12)}
+details[open]>p{animation:fade .4s var(--ease)}
+summary{font-weight:600;cursor:pointer}
+details p{margin-top:8px;color:var(--muted)}
+
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:20px}
+.info div{background:var(--card);border-left:5px solid var(--sun);padding:18px;border-radius:8px}
+.info small{display:block;color:var(--muted)}
+.info b{font-size:1.3rem}
+
+.staff{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:20px}
+.staff div{background:var(--card);border-left:5px solid var(--blue);padding:16px 18px;border-radius:8px;font-weight:600;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.staff div:hover{transform:translateY(-5px);box-shadow:0 10px 24px rgba(10,31,68,.15)}
+.staff small{display:block;font-weight:400;color:var(--muted)}
 
 .join{background:var(--navy);color:#fff;text-align:center}
 .join h2{color:#fff}
 .join p{margin-bottom:24px;color:#c9dcf5}
-
-footer{text-align:center;padding:26px;color:#4a5f7d;font-size:.9rem}
-@media(max-width:600px){nav a{margin-left:12px}.brand span{display:none}}
+.social{margin-top:22px}
+.social a{color:#fff;font-weight:600;text-decoration:underline;text-underline-offset:4px}
+footer{text-align:center;padding:26px;color:var(--ink);font-size:.9rem;background:var(--band)}
+footer a{font-weight:600}
+#top-btn{position:fixed;right:20px;bottom:20px;display:none;border:0;background:var(--blue);color:#fff;width:44px;height:44px;border-radius:50%;font-size:1.2rem;z-index:9;transition:transform .3s var(--ease)}
+#top-btn:hover{transform:translateY(-3px)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
+<div id="bar"></div>
 
 <header>
-  <a class="brand" href="#top"><img src="CARPs.webp" alt=""><span>California Roleplay</span></a>
-  <nav>
+  <a class="brand" href="#top"><img src="CARPs.png" alt="" onerror="this.style.display='none'"><span>California Roleplay</span></a>
+  <nav id="nav">
     <a href="#about">About</a>
+    <a href="#departments">Departments</a>
     <a href="#rules">Rules</a>
-    <a href="#staff">Staff</a>
+    <a href="#erlc">ERLC</a>
+    <a href="#faq">FAQ</a>
+    <a href="#staff">Directive Team</a>
     <a href="#join">Join</a>
+    <button class="icon" id="theme" aria-label="Switch light or dark mode">Dark</button>
   </nav>
+  <button class="icon" id="menu" aria-label="Open menu">Menu</button>
 </header>
 
 <div class="hero" id="top">
-  <img src="CARPs.webp" alt="California Roleplay logo">
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <img src="CARPs.png" alt="California Roleplay logo">
   <p>A realistic roleplay community set across the Golden State.</p>
   <a class="btn" href="https://discord.gg/BbxvDPDzy">Join our Discord</a>
+  <div class="online" id="online"></div>
 </div>
 
-<section id="about" class="alt">
+<section id="about" class="alt reveal">
   <div class="wrap">
     <h2>About us</h2>
-    <p>California Roleplay is a community for players who enjoy realistic roleplay. Patrol as law enforcement, respond as fire and EMS, run a business, or live as a civilian. Everyone is welcome, and new players get help from our staff.</p>
+    <p>California Roleplay is a community for players who enjoy realistic roleplay. Patrol as law enforcement, respond as fire and EMS, keep the roads running, or live as a civilian. Everyone is welcome, and new players get help from our staff.</p>
   </div>
 </section>
 
-<section id="rules">
+<section id="departments" class="reveal">
+  <div class="wrap">
+    <h2>Departments</h2>
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-t="0">Law Enforcement</button>
+      <button role="tab" aria-selected="false" data-t="1">Fire and EMS</button>
+      <button role="tab" aria-selected="false" data-t="2">Transportation</button>
+      <button role="tab" aria-selected="false" data-t="3">Civilian</button>
+    </div>
+    <div class="panel" data-p="0"><b>Law Enforcement.</b> Patrol, traffic stops, investigations, and keeping the peace. Training is provided after you pass your application.</div>
+    <div class="panel" data-p="1" hidden><b>Fire and EMS.</b> Respond to fires, crashes, and medical calls. Work with other departments to save lives in every scene.</div>
+    <div class="panel" data-p="2" hidden><b>Transportation.</b> Clear roads, tow vehicles, and support scenes across the state.</div>
+    <div class="panel" data-p="3" hidden><b>Civilian.</b> Build a character, get a job, buy a home, or start a business. No application needed to start.</div>
+  </div>
+</section>
+
+<section id="rules" class="alt reveal">
   <div class="wrap">
     <h2>Server rules</h2>
+    <input id="q" type="search" placeholder="Search the rules..." aria-label="Search the rules">
     <ol>
-      <li>Respect every member and staff member.</li>
-      <li>Stay in character during roleplay scenes.</li>
-      <li>No random deathmatching or vehicle deathmatching.</li>
-      <li>No cheating, exploiting, or using unauthorized mods.</li>
-      <li>Follow staff instructions right away. Appeal decisions in a ticket.</li>
-      <li>Keep chat free of hate speech and harassment.</li>
+      <li><b>Display Names</b><span>You are required to have your Discord display name the same as your Roblox username. You will be automatically loaded in-game if you do not link your account.</span></li>
+      <li><b>Respect Others</b><span>Remain respectful to both members and staff inside of our community. We will moderate you if we find you being disrespectful.</span></li>
+      <li><b>Hate Speech</b><span>Using racist, homophobic or genderphobia comments are prohibited, we ask that you keep these comments outside of our community.</span></li>
+      <li><b>NSFW Content</b><span>Sharing content made for adults will result in a permanent ban. We do not condone this inside of our community.</span></li>
+      <li><b>Self Promotion</b><span>DM advertising or advertising inside of our channels will result in a ban from our communications.</span></li>
+      <li><b>Rule Enforcement</b><span>Staff reserve the right to moderate you in the event you violate our servers regulations.</span></li>
+      <li><b>Language</b><span>Our community is English only. You are only permitted to speak English within our channels.</span></li>
+      <li><b>Alt Accounts</b><span>You are allowed one account per-person inside of our server. If you are found to have multiple accounts inside of our server we will remove all accounts.</span></li>
+      <li><b>Common Sense</b><span>Just because a rule is not written down does not mean that we do not moderate it. You were given a brain for a reason, please use it.</span></li>
+      <li><b>Voice Chat</b><span>Do not abuse soundboards, voice calls or voice filters inside of our calls.</span></li>
+      <li><b>Causing Drama</b><span>We ask that you keep all drama outside of our server. This keeps our community clean without having outside drama constantly being brought to our chats.</span></li>
+      <li><b>Terms of Service</b><span>You are required to follow Discords Terms of Service at all times whilst on our community.</span></li>
+      <li><b>Direct Message Moderation</b><span>We do not moderate members DMs unless it violates ToS or something that we do not side with. If these DMs are with a hired staff member, that is when we would initiate a further investigation.</span></li>
     </ol>
   </div>
 </section>
 
-<section id="staff" class="alt">
+<section id="erlc" class="reveal">
   <div class="wrap">
-    <h2>Staff team</h2>
+    <h2>ERLC information</h2>
+    <p>Join our ERLC server using the join code below.</p>
+    <div class="info">
+      <div><small>Owner</small><b>thomaskarag (Timothy)</b></div>
+      <div><small>Join code</small><b>CASRRP</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="alt reveal">
+  <div class="wrap">
+    <h2>Frequently asked questions</h2>
+    <details><summary>How do I join?</summary><p>Click Join our Discord, read the rules, and follow the steps in the welcome channel.</p></details>
+    <details><summary>Do I need to apply?</summary><p>Civilians can start right away. Law enforcement, Fire and EMS, and Transportation need an application.</p></details>
+    <details><summary>How do I contact staff?</summary><p>Open a ticket in our Discord and someone will be with you shortly.</p></details>
+    <details><summary>Is it free to play?</summary><p>Yes. Joining the community is free.</p></details>
+  </div>
+</section>
+
+<section id="staff" class="reveal">
+  <div class="wrap">
+    <h2>Directive Team</h2>
     <div class="staff">
       <div>Timothy<small>Director</small></div>
       <div>King_bossbaby10<small>Director</small></div>
@@ -95,15 +203,63 @@ footer{text-align:center;padding:26px;color:#4a5f7d;font-size:.9rem}
   </div>
 </section>
 
-<section id="join" class="join">
+<section id="join" class="join reveal">
   <div class="wrap">
     <h2>Ready to play?</h2>
     <p>Join the Discord, read the rules, and open an application.</p>
     <a class="btn sun" href="https://discord.gg/BbxvDPDzy">Join our Discord</a>
+    <div class="social">Follow us on <a href="https://www.tiktok.com/@carp_456" target="_blank" rel="noopener">TikTok</a></div>
   </div>
 </section>
 
-<footer>&copy; 2026 California Roleplay. Not affiliated with any real government agency.</footer>
+<footer>&copy; 2026 California Roleplay. Not affiliated with any real government agency. <a href="https://www.tiktok.com/@carp_456" target="_blank" rel="noopener">TikTok</a></footer>
+<button id="top-btn" aria-label="Back to top" onclick="scrollTo({top:0})">&uarr;</button>
 
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+// theme
+const root=document.documentElement,tb=$('#theme');
+function setTheme(t){root.dataset.theme=t;tb.textContent=t==='dark'?'Light':'Dark';try{localStorage.setItem('theme',t)}catch(e){}}
+let saved=null;try{saved=localStorage.getItem('theme')}catch(e){}
+setTheme(saved||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
+tb.onclick=()=>setTheme(root.dataset.theme==='dark'?'light':'dark');
+// mobile menu
+$('#menu').onclick=()=>$('#nav').classList.toggle('open');
+$$('#nav a').forEach(a=>a.onclick=()=>$('#nav').classList.remove('open'));
+// progress bar + back to top
+addEventListener('scroll',()=>{
+  const h=document.documentElement,p=h.scrollTop/(h.scrollHeight-h.clientHeight);
+  $('#bar').style.width=(p*100)+'%';
+  $('#top-btn').style.display=h.scrollTop>500?'block':'none';
+},{passive:true});
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  e.target.classList.add('in');
+  io.unobserve(e.target);
+}),{threshold:.15});
+$$('.reveal').forEach(el=>io.observe(el));
+// tabs
+$$('.tabs button').forEach(b=>b.onclick=()=>{
+  $$('.tabs button').forEach(x=>x.setAttribute('aria-selected',x===b));
+  $$('.panel').forEach(p=>p.hidden=p.dataset.p!==b.dataset.t);
+});
+// rule search
+$('#q').oninput=e=>{const v=e.target.value.toLowerCase();$$('#rules li').forEach(li=>li.classList.toggle('hide',!li.textContent.toLowerCase().includes(v)))};
+// live Discord member count (shows nothing if unavailable)
+fetch('https://discord.com/api/v9/invites/BbxvDPDzy?with_counts=true').then(r=>r.json()).then(d=>{
+  if(d.approximate_member_count)$('#online').innerHTML='<span class="dot"></span>'+d.approximate_presence_count+' online &middot; '+d.approximate_member_count+' members';
+}).catch(()=>{});
+// hero particles
+(function(){
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  const c=$('#fx'),x=c.getContext('2d');let w,h,ps=[];
+  function size(){w=c.width=c.offsetWidth;h=c.height=c.offsetHeight;ps=Array.from({length:Math.min(60,w/18)},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*3+1,v:Math.random()*.5+.2}))}
+  function draw(){x.clearRect(0,0,w,h);x.fillStyle='rgba(30,111,224,.25)';
+    ps.forEach(p=>{p.y-=p.v;if(p.y<-5){p.y=h+5;p.x=Math.random()*w}x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.fill()});
+    requestAnimationFrame(draw)}
+  size();addEventListener('resize',size);draw();
+})();
+</script>
 </body>
 </html>
